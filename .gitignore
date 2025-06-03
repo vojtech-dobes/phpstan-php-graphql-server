@@ -1,0 +1,5 @@
+.DS_Store
+.phpunit.cache
+.phpunit.result.cache
+tests-temp
+vendor
