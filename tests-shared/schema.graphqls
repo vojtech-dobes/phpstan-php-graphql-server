@@ -1,0 +1,26 @@
+type Query {
+	validNonNullString: String!
+	invalidStringResolvedAsBool: String
+
+	invalidArgumentsMismatch(arg1: String): String
+
+	validDeferred: String
+
+	arrayType: ArrayType!
+	objectType: ObjectType!
+
+	providerOfInvalidParentType: InvalidParentType!
+}
+
+type ArrayType {
+	a: String!
+}
+
+type InvalidParentType {
+	name: String!
+}
+
+type ObjectType {
+	withGetter: String!
+	withProperty: String!
+}

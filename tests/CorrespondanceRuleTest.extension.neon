@@ -1,0 +1,10 @@
+includes:
+  - ../extension.neon
+
+parameters:
+  graphql:
+    generatedDir: %rootDir%/../../../tests/generated-graphql
+    schemas: [%rootDir%/../../../tests-shared/schema.graphqls]
+
+services:
+  - Vojtechdobes\Tests\CustomAdapter

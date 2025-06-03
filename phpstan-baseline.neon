@@ -1,0 +1,13 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Vojtechdobes\\PHPStan\\GraphQL\\Helpers\:\:normalizeSchema\(\) throws checked exception Exception but it''s missing from the PHPDoc @throws tag\.$#'
+			identifier: missingType.checkedException
+			count: 1
+			path: src/GraphQL/Helpers.php
+
+		-
+			message: '#^Method Vojtechdobes\\PHPStan\\GraphQL\\SchemaServiceOraculum\:\:getFieldResolverType\(\) should return PHPStan\\Type\\ObjectType but returns PHPStan\\Type\\Type\.$#'
+			identifier: return.type
+			count: 1
+			path: src/GraphQL/SchemaServiceOraculum.php

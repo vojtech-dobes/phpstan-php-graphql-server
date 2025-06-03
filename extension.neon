@@ -1,0 +1,22 @@
+parameters:
+  bootstrapFiles:
+    - src/GraphQL/bootstrap.php
+
+  scanDirectories:
+    - %graphql.generatedDir%
+
+parametersSchema:
+  graphql: structure([
+    generatedDir: string()
+    schemas: listOf(schema(string(), assert('is_file', 'Schema path must exist')))
+  ])
+
+services:
+  - class: Vojtechdobes\PHPStan\GraphQL\Config
+    arguments:
+      generatedDir: %graphql.generatedDir%
+      schemas: %graphql.schemas%
+
+  - class: Vojtechdobes\PHPStan\GraphQL\CorrespondanceRule
+    tags:
+      - phpstan.rules.rule
