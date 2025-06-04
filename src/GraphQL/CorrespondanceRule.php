@@ -45,7 +45,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			}
 
 			if ($this->reflectionProvider->hasClass($invalidClassName)) {
-				$ruleError = PHPStan\Rules\RuleErrorBuilder::message("GraphQL schema isn't valid.")
+				$ruleError = PHPStan\Rules\RuleErrorBuilder::message("GraphQL schema isn't valid")
 					->identifier('graphql.schemaInvalid')
 					->file($schemaName)
 					->line(0)
