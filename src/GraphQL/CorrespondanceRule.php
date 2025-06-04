@@ -38,7 +38,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			// following check bypasses PHPStan\Testing\RuleTestCase
 			// not being able to discover file generated on-the-fly
 			if (
-				class_exists($invalidClassName) === false
+				@class_exists($invalidClassName) === false
 				&& is_file($invalidClassNameFile = ($this->config->generatedDir . '/' . $invalidClassName . '.php'))
 			) {
 				require_once $invalidClassNameFile;
@@ -108,7 +108,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 		// following check bypasses PHPStan\Testing\RuleTestCase
 		// not being able to discover file generated on-the-fly
 		if (
-			class_exists($validClassName) === false
+			@class_exists($validClassName) === false
 			&& is_file($validClassNameFile = ($this->config->generatedDir . '/' . $validClassName . '.php'))
 		) {
 			require_once $validClassNameFile;
