@@ -41,7 +41,19 @@ abstract class AbstractCorrespondanceRuleTest extends PHPStan\Testing\RuleTestCa
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\TestsShared\Resolvers\InvalidParentTypeNameFieldResolver of field InvalidParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to array{}",
+				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to array{}",
+				-1,
+			],
+			[
+				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Entity",
+				-1,
+			],
+			[
+				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Thing",
+				-1,
+			],
+			[
+				"Resolver Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver of field EntityParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Entity, but parent is resolved to array{}",
 				-1,
 			],
 		]);

@@ -6,14 +6,14 @@ use Vojtechdobes;
 
 
 /**
- * @implements Vojtechdobes\GraphQL\FieldResolver<null, array{}>
+ * @implements Vojtechdobes\GraphQL\FieldResolver<null, Thing>
  */
-final class QueryProviderOfInvalidParentTypeFieldResolver implements Vojtechdobes\GraphQL\FieldResolver
+final class QueryProviderOfValidEntityParentTypeThingFieldResolver implements Vojtechdobes\GraphQL\FieldResolver
 {
 
 	public function resolveField(mixed $objectValue, Vojtechdobes\GraphQL\FieldSelection $field): mixed
 	{
-		return [];
+		return new Thing(name: 'Almond');
 	}
 
 }
