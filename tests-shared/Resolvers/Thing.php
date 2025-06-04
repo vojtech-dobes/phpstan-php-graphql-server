@@ -3,7 +3,7 @@
 namespace Vojtechdobes\TestsShared\Resolvers;
 
 
-final class Person implements Entity
+final class Thing implements Entity
 {
 
 	public function __construct(

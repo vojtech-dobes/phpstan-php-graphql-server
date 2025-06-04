@@ -264,7 +264,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			$expectedParentType = $resolverClassType->getTemplateType(Vojtechdobes\GraphQL\FieldResolver::class, 'TObjectValue');
 
 			foreach ($this->listObjectTypeResolvedValueTypes($scope, $schemaServiceOraculum, $objectType) as $parentType) {
-				if ($parentType->isSuperTypeOf($expectedParentType)->yes() === false) {
+				if ($expectedParentType->isSuperTypeOf($parentType)->yes() === false) {
 					$errors[] = sprintf(
 						"Resolver %s of field %s expects parent to be %s, but parent is resolved to %s",
 						$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),

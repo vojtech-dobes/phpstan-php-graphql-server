@@ -42,8 +42,18 @@ final class CustomAdapter implements Vojtechdobes\PHPStan\GraphQL\Adapter
 			'ObjectType.withGetter' => new Vojtechdobes\GraphQL\GetterFieldResolver(),
 			'ObjectType.withProperty' => new Vojtechdobes\GraphQL\PropertyFieldResolver(),
 
-			'Query.providerOfInvalidParentType' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfInvalidParentTypeFieldResolver(),
-			'InvalidParentType.name' => new Vojtechdobes\TestsShared\Resolvers\InvalidParentTypeNameFieldResolver(),
+			'Query.providerOfInvalidPersonParentTypeArray' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfInvalidPersonParentTypeArrayFieldResolver(),
+			'Query.providerOfInvalidPersonParentTypeEntity' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfInvalidPersonParentTypeEntityFieldResolver(),
+			'Query.providerOfInvalidPersonParentTypeThing' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfInvalidPersonParentTypeThingFieldResolver(),
+			'Query.providerOfValidPersonParentTypePerson' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidPersonParentTypePersonFieldResolver(),
+
+			'Query.providerOfInvalidEntityParentTypeArray' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfInvalidEntityParentTypeArrayFieldResolver(),
+			'Query.providerOfValidEntityParentTypeEntity' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidEntityParentTypeEntityFieldResolver(),
+			'Query.providerOfValidEntityParentTypePerson' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidEntityParentTypePersonFieldResolver(),
+			'Query.providerOfValidEntityParentTypeThing' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidEntityParentTypeThingFieldResolver(),
+
+			'PersonParentType.name' => new Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver(),
+			'EntityParentType.name' => new Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver(),
 		]);
 	}
 

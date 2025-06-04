@@ -9,18 +9,30 @@ type Query {
 	arrayType: ArrayType!
 	objectType: ObjectType!
 
-	providerOfInvalidParentType: InvalidParentType!
+	providerOfInvalidPersonParentTypeArray: PersonParentType!
+	providerOfInvalidPersonParentTypeEntity: PersonParentType!
+	providerOfInvalidPersonParentTypeThing: PersonParentType!
+	providerOfValidPersonParentTypePerson: PersonParentType!
+
+	providerOfInvalidEntityParentTypeArray: EntityParentType!
+	providerOfValidEntityParentTypeEntity: EntityParentType!
+	providerOfValidEntityParentTypePerson: EntityParentType!
+	providerOfValidEntityParentTypeThing: EntityParentType!
 }
 
 type ArrayType {
 	a: String!
 }
 
-type InvalidParentType {
-	name: String!
-}
-
 type ObjectType {
 	withGetter: String!
 	withProperty: String!
+}
+
+type PersonParentType {
+	name: String!
+}
+
+type EntityParentType {
+	name: String!
 }
