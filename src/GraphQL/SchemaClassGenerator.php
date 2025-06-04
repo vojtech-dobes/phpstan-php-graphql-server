@@ -57,7 +57,16 @@ final class SchemaClassGenerator
 		$file = new Nette\PhpGenerator\PhpFile();
 		$file->setStrictTypes();
 
-		$file->addClass($invalidClassName);
+		$class = $file->addClass($invalidClassName);
+
+		$class->addProperty('errors')
+			->setPublic()
+			->setValue(
+				array_map(
+					static fn ($error) => $error->toResponse(),
+					$e->errors,
+				),
+			);
 
 		Nette\Utils\FileSystem::write(
 			"{$this->generatedDir}/{$invalidClassName}.php",
