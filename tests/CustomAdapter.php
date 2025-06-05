@@ -56,6 +56,9 @@ final class CustomAdapter implements Vojtechdobes\PHPStan\GraphQL\Adapter
 
 			'PersonParentType.name' => new Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver(),
 			'EntityParentType.name' => new Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver(),
+
+			'Query.validSelfReference' => new Vojtechdobes\TestsShared\Resolvers\QueryValidSelfReferenceFieldResolver(),
+			'SelfReference.internalSelfReference' => new Vojtechdobes\GraphQL\PropertyFieldResolver(),
 		]);
 	}
 

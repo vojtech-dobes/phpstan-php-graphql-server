@@ -20,6 +20,8 @@ type Query {
 	providerOfValidEntityParentTypeThing: EntityParentType!
 
 	rootFieldWithParentBasedResolver: String # should be eg. PropertyFieldResolver
+
+	validSelfReference: SelfReference
 }
 
 type ArrayType {
@@ -37,4 +39,8 @@ type PersonParentType {
 
 type EntityParentType {
 	name: String!
+}
+
+type SelfReference {
+	internalSelfReference: SelfReference
 }
