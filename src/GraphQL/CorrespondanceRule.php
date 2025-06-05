@@ -154,6 +154,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			$objectType,
 			$fieldName,
 			$resolverClassType,
+			[],
 		);
 
 		foreach ($errors as $error) {
@@ -186,6 +187,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 
 
 	/**
+	 * @param list<string> $alreadyVisitedFields
 	 * @return array{list<PHPStan\Type\Type>, list<string>}
 	 */
 	private function listFieldResolvedValueTypes(
@@ -194,15 +196,23 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 		string $objectType,
 		string $fieldName,
 		PHPStan\Type\ObjectType $resolverClassType,
+		array $alreadyVisitedFields,
 	): array
 	{
 		$errors = [];
 		$types = [];
 
+		$parentTypes = $this->listObjectTypeResolvedValueTypes(
+			$scope,
+			$schemaServiceOraculum,
+			$objectType,
+			[...$alreadyVisitedFields, "$objectType.$fieldName"],
+		);
+
 		if ($resolverClassType->getClassName() === Vojtechdobes\GraphQL\ArrayFieldResolver::class) {
 			$offsetType = new PHPStan\Type\Constant\ConstantStringType($fieldName);
 
-			foreach ($this->listObjectTypeResolvedValueTypes($scope, $schemaServiceOraculum, $objectType) as $parentType) {
+			foreach ($parentTypes as $parentType) {
 				if ($parentType->isOffsetAccessible()->yes() === false) {
 					$errors[] = sprintf(
 						"Resolver %s of field %s expects parent to have array access, but parent is resolved to %s",
@@ -225,7 +235,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 		} elseif ($resolverClassType->getClassName() === Vojtechdobes\GraphQL\GetterFieldResolver::class) {
 			$methodName = 'get' . ucfirst($fieldName);
 
-			foreach ($this->listObjectTypeResolvedValueTypes($scope, $schemaServiceOraculum, $objectType) as $parentType) {
+			foreach ($parentTypes as $parentType) {
 				if ($parentType->isObject()->yes() === false) {
 					$errors[] = sprintf(
 						"Resolver %s of field %s expects parent to be an object, but parent is resolved to %s",
@@ -250,7 +260,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 				}
 			}
 		} elseif ($resolverClassType->getClassName() === Vojtechdobes\GraphQL\PropertyFieldResolver::class) {
-			foreach ($this->listObjectTypeResolvedValueTypes($scope, $schemaServiceOraculum, $objectType) as $parentType) {
+			foreach ($parentTypes as $parentType) {
 				if ($parentType->isObject()->yes() === false) {
 					$errors[] = sprintf(
 						"Resolver %s of field %s expects parent to be an object, but parent is resolved to %s",
@@ -274,7 +284,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 		} else {
 			$expectedParentType = $resolverClassType->getTemplateType(Vojtechdobes\GraphQL\FieldResolver::class, 'TObjectValue');
 
-			foreach ($this->listObjectTypeResolvedValueTypes($scope, $schemaServiceOraculum, $objectType) as $parentType) {
+			foreach ($parentTypes as $parentType) {
 				if ($expectedParentType->isSuperTypeOf($parentType)->yes() === false) {
 					$errors[] = sprintf(
 						"Resolver %s of field %s expects parent to be %s, but parent is resolved to %s",
@@ -303,23 +313,36 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 
 
 	/**
+	 * @param list<string> $alreadyVisitedFields
 	 * @return list<PHPStan\Type\Type>
 	 */
 	private function listObjectTypeResolvedValueTypes(
 		PHPStan\Analyser\Scope $scope,
 		SchemaServiceOraculum $schemaServiceOraculum,
 		string $objectType,
+		array $alreadyVisitedFields,
 	): array
 	{
 		$result = [];
 
+		if ($objectType === $schemaServiceOraculum->getRootOperationType(Vojtechdobes\GraphQL\OperationType::Query)) {
+			return [new PHPStan\Type\NullType()];
+		}
+
 		foreach ($schemaServiceOraculum->listFieldsResolvedToObjectType($objectType) as [$parentObjectType, $parentFieldName]) {
+			$parentField = "{$parentObjectType}.{$parentFieldName}";
+
+			if (in_array($parentField, $alreadyVisitedFields, true)) {
+				continue;
+			}
+
 			[$parentTypes] = $this->listFieldResolvedValueTypes(
 				$scope,
 				$schemaServiceOraculum,
 				$parentObjectType,
 				$parentFieldName,
 				$schemaServiceOraculum->getFieldResolverType($parentObjectType, $parentFieldName),
+				[...$alreadyVisitedFields, $parentField],
 			);
 
 			foreach ($parentTypes as $parentType) {

@@ -41,6 +41,10 @@ abstract class AbstractCorrespondanceRuleTest extends PHPStan\Testing\RuleTestCa
 				-1,
 			],
 			[
+				"Resolver Vojtechdobes\GraphQL\PropertyFieldResolver of field Query.rootFieldWithParentBasedResolver expects parent to be an object, but parent is resolved to null",
+				-1,
+			],
+			[
 				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to array{}",
 				-1,
 			],
