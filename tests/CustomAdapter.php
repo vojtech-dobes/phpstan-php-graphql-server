@@ -52,6 +52,8 @@ final class CustomAdapter implements Vojtechdobes\PHPStan\GraphQL\Adapter
 			'Query.providerOfValidEntityParentTypePerson' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidEntityParentTypePersonFieldResolver(),
 			'Query.providerOfValidEntityParentTypeThing' => new Vojtechdobes\TestsShared\Resolvers\QueryProviderOfValidEntityParentTypeThingFieldResolver(),
 
+			'Query.rootFieldWithParentBasedResolver' => new Vojtechdobes\GraphQL\PropertyFieldResolver(),
+
 			'PersonParentType.name' => new Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver(),
 			'EntityParentType.name' => new Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver(),
 		]);

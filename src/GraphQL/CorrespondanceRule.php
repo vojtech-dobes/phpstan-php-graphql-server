@@ -313,6 +313,10 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 	{
 		$result = [];
 
+		if ($objectType === $schemaServiceOraculum->getRootOperationType(Vojtechdobes\GraphQL\OperationType::Query)) {
+			return [new PHPStan\Type\NullType()];
+		}
+
 		foreach ($schemaServiceOraculum->listFieldsResolvedToObjectType($objectType) as [$parentObjectType, $parentFieldName]) {
 			[$parentTypes] = $this->listFieldResolvedValueTypes(
 				$scope,

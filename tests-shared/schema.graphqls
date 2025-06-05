@@ -18,6 +18,8 @@ type Query {
 	providerOfValidEntityParentTypeEntity: EntityParentType!
 	providerOfValidEntityParentTypePerson: EntityParentType!
 	providerOfValidEntityParentTypeThing: EntityParentType!
+
+	rootFieldWithParentBasedResolver: String # should be eg. PropertyFieldResolver
 }
 
 type ArrayType {
