@@ -90,7 +90,7 @@ final class SchemaServiceOraculum
 		return $this->resolveEncodedPhpType(
 			$this->schemaReflection
 				->getNativeProperty('field__' . $objectType . '_' . $fieldName . '__phpType')
-				->getPhpDocType()
+				->getPhpDocType(),
 		);
 	}
 
@@ -101,7 +101,7 @@ final class SchemaServiceOraculum
 		return $this->resolveEncodedPhpType(
 			$this->schemaReflection
 				->getNativeProperty('field__' . $objectType . '_' . $fieldName . '__arguments')
-				->getPhpDocType()
+				->getPhpDocType(),
 		);
 	}
 
@@ -111,7 +111,7 @@ final class SchemaServiceOraculum
 	{
 		return PHPStan\Type\TypeTraverser::map(
 			$encodedType,
-			function (PHPStan\Type\Type $type, callable $traverse): PHPStan\Type\Type {
+			static function (PHPStan\Type\Type $type, callable $traverse): PHPStan\Type\Type {
 				if ($type instanceof PHPStan\Type\Generic\GenericObjectType && $type->getClassName() === '__GraphQL__Scalar') {
 					return $type
 						->getTypes()[0]

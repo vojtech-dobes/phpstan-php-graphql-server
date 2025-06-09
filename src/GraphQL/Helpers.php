@@ -12,7 +12,7 @@ final class Helpers
 	public static function createValidSchemaClassName(string $schemaName): string
 	{
 		return sprintf(
-			"GraphQLSchemaClass_%s",
+			'GraphQLSchemaClass_%s',
 			md5($schemaName),
 		);
 	}
@@ -22,7 +22,7 @@ final class Helpers
 	public static function createInvalidSchemaClassName(string $schemaName): string
 	{
 		return sprintf(
-			"GraphQLSchemaClass_%s_Invalid",
+			'GraphQLSchemaClass_%s_Invalid',
 			md5($schemaName),
 		);
 	}

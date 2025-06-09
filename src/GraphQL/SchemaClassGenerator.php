@@ -1,9 +1,7 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Vojtechdobes\PHPStan\GraphQL;
 
-use Abstergo;
-use BackedEnum;
 use Nette;
 use PHPStan;
 use Vojtechdobes;
@@ -88,7 +86,7 @@ final class SchemaClassGenerator
 		$class = $file->addClass($className);
 
 		foreach ($schema->rootOperationTypes as $operation => $type) {
-			$class->addProperty(sprintf("root__%s__type", $operation))
+			$class->addProperty(sprintf('root__%s__type', $operation))
 				->setPublic()
 				->setValue($type);
 		}
@@ -147,7 +145,7 @@ final class SchemaClassGenerator
 					->addComment('@var ' . sprintf(
 						'array{%s}',
 						implode(', ', array_map(
-							fn ($argumentDefinition) => sprintf(
+							static fn ($argumentDefinition) => sprintf(
 								'%s: %s',
 								$argumentDefinition->name,
 								self::getPhpType(
@@ -173,7 +171,7 @@ final class SchemaClassGenerator
 			->setValue($fields);
 
 		foreach ($objectFields as $objectType => $fieldNames) {
-			$class->addProperty('objectType__' . $objectType .'__fields')
+			$class->addProperty('objectType__' . $objectType . '__fields')
 				->setPublic()
 				->setValue($fieldNames);
 		}
@@ -215,7 +213,7 @@ final class SchemaClassGenerator
 		if ($typeDefinition instanceof Vojtechdobes\GraphQL\TypeSystem\ScalarTypeDefinition) {
 			$scalarFormatter = $schema->scalarImplementationRegistry->getItem($typeDefinition->name);
 
-			$fieldType = '__GraphQL__Scalar<' . $scalarFormatter::class. '>';
+			$fieldType = '__GraphQL__Scalar<' . $scalarFormatter::class . '>';
 		} elseif ($typeDefinition instanceof Vojtechdobes\GraphQL\TypeSystem\EnumTypeDefinition) {
 			$enumClass = $schema->getEnumClass($typeDefinition->name);
 

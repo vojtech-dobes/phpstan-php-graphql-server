@@ -27,7 +27,7 @@ final class Config
 				$schemaFile = realpath($schema);
 
 				if ($schemaFile === false) {
-					throw new Exception("$schema doesn't exist");
+					throw new Exception("{$schema} doesn't exist");
 				}
 
 				return $schemaFile;

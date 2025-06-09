@@ -1,9 +1,9 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Vojtechdobes\TestsShared;
 
-use PhpParser;
 use PHPStan;
+use PhpParser;
 
 
 /**
