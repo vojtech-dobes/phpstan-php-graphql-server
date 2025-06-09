@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Vojtechdobes\TestsShared;
 
@@ -33,7 +33,7 @@ abstract class AbstractCorrespondanceRuleTest extends PHPStan\Testing\RuleTestCa
 	{
 		$this->analyse([__DIR__ . '/DummyCollector.php'], [
 			[
-				"Type of field Query.invalidStringResolvedAsBool should be string|null but resolver Vojtechdobes\TestsShared\Resolvers\QueryInvalidStringResolvedAsBoolFieldResolver returns bool",
+				'Type of field Query.invalidStringResolvedAsBool should be string|null but resolver Vojtechdobes\TestsShared\Resolvers\QueryInvalidStringResolvedAsBoolFieldResolver returns bool',
 				-1,
 			],
 			[
@@ -41,23 +41,23 @@ abstract class AbstractCorrespondanceRuleTest extends PHPStan\Testing\RuleTestCa
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\GraphQL\PropertyFieldResolver of field Query.rootFieldWithParentBasedResolver expects parent to be an object, but parent is resolved to null",
+				'Resolver Vojtechdobes\GraphQL\PropertyFieldResolver of field Query.rootFieldWithParentBasedResolver expects parent to be an object, but parent is resolved to null',
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to array{}",
+				'Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to array{}',
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Entity",
+				'Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Entity',
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Thing",
+				'Resolver Vojtechdobes\TestsShared\Resolvers\PersonParentTypeNameFieldResolver of field PersonParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Person, but parent is resolved to Vojtechdobes\TestsShared\Resolvers\Thing',
 				-1,
 			],
 			[
-				"Resolver Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver of field EntityParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Entity, but parent is resolved to array{}",
+				'Resolver Vojtechdobes\TestsShared\Resolvers\EntityParentTypeNameFieldResolver of field EntityParentType.name expects parent to be Vojtechdobes\TestsShared\Resolvers\Entity, but parent is resolved to array{}',
 				-1,
 			],
 		]);

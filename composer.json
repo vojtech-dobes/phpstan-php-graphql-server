@@ -17,6 +17,9 @@
 		}
 	},
 	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": false
+		},
 		"sort-packages": true
 	},
 	"keywords": [
@@ -42,6 +45,7 @@
 		"phpunit/phpunit": "^12.1",
 		"spaze/phpstan-disallowed-calls": "^4.5.0",
 		"tracy/tracy": "^2.10.9",
+		"vojtech-dobes/php-codestyle": "~0.2.0",
 		"vojtech-dobes/php-grammar-processing": "dev-master@dev",
 		"vojtech-dobes/php-graphql-server": "dev-master@dev"
 	},

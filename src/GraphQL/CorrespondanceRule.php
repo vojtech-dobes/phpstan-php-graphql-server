@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace Vojtechdobes\PHPStan\GraphQL;
 
@@ -167,7 +167,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 		foreach ($actualPhpTypes as $actualPhpType) {
 			if ($expectedPhpType->isSuperTypeOf($actualPhpType)->yes() === false) {
 				$message = sprintf(
-					"Type of field %s should be %s but resolver %s returns %s",
+					'Type of field %s should be %s but resolver %s returns %s',
 					"{$objectType}.{$fieldName}",
 					$expectedPhpType->describe(PHPStan\Type\VerbosityLevel::precise()),
 					$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),
@@ -206,7 +206,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			$scope,
 			$schemaServiceOraculum,
 			$objectType,
-			[...$alreadyVisitedFields, "$objectType.$fieldName"],
+			[...$alreadyVisitedFields, "{$objectType}.{$fieldName}"],
 		);
 
 		if ($resolverClassType->getClassName() === Vojtechdobes\GraphQL\ArrayFieldResolver::class) {
@@ -215,7 +215,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			foreach ($parentTypes as $parentType) {
 				if ($parentType->isOffsetAccessible()->yes() === false) {
 					$errors[] = sprintf(
-						"Resolver %s of field %s expects parent to have array access, but parent is resolved to %s",
+						'Resolver %s of field %s expects parent to have array access, but parent is resolved to %s',
 						$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),
 						"{$objectType}.{$fieldName}",
 						$parentType->describe(PHPStan\Type\VerbosityLevel::precise()),
@@ -238,7 +238,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			foreach ($parentTypes as $parentType) {
 				if ($parentType->isObject()->yes() === false) {
 					$errors[] = sprintf(
-						"Resolver %s of field %s expects parent to be an object, but parent is resolved to %s",
+						'Resolver %s of field %s expects parent to be an object, but parent is resolved to %s',
 						$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),
 						"{$objectType}.{$fieldName}",
 						$parentType->describe(PHPStan\Type\VerbosityLevel::precise()),
@@ -263,7 +263,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			foreach ($parentTypes as $parentType) {
 				if ($parentType->isObject()->yes() === false) {
 					$errors[] = sprintf(
-						"Resolver %s of field %s expects parent to be an object, but parent is resolved to %s",
+						'Resolver %s of field %s expects parent to be an object, but parent is resolved to %s',
 						$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),
 						"{$objectType}.{$fieldName}",
 						$parentType->describe(PHPStan\Type\VerbosityLevel::precise()),
@@ -287,7 +287,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 			foreach ($parentTypes as $parentType) {
 				if ($expectedParentType->isSuperTypeOf($parentType)->yes() === false) {
 					$errors[] = sprintf(
-						"Resolver %s of field %s expects parent to be %s, but parent is resolved to %s",
+						'Resolver %s of field %s expects parent to be %s, but parent is resolved to %s',
 						$resolverClassType->describe(PHPStan\Type\VerbosityLevel::precise()),
 						"{$objectType}.{$fieldName}",
 						$expectedParentType->describe(PHPStan\Type\VerbosityLevel::precise()),
@@ -368,7 +368,7 @@ final class CorrespondanceRule implements PHPStan\Rules\Rule
 	{
 		return PHPStan\Type\TypeTraverser::map(
 			$type,
-			function (PHPStan\Type\Type $type, callable $traverse): PHPStan\Type\Type {
+			static function (PHPStan\Type\Type $type, callable $traverse): PHPStan\Type\Type {
 				if ($type instanceof PHPStan\Type\Generic\GenericObjectType && $type->getClassName() === Vojtechdobes\GraphQL\Deferred::class) {
 					return $type->getTemplateType(Vojtechdobes\GraphQL\Deferred::class, 'TValue');
 				}
